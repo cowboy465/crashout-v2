@@ -1,0 +1,4 @@
+
+DirectoryIndex index.php
+RewriteEngine On
+RewriteRule ^user/([A-Za-z0-9_\-]+)/?$ user.php?u=$1 [L,QSA]
