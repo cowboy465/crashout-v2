@@ -31,9 +31,9 @@ else if(!empty($rec['last_seen']) && time()-strtotime($rec['last_seen'])<=90) $b
 const user = <?php echo json_encode($u); ?>;
 function esc(s){return s? s.replace(/</g,'&lt;') : ''}
 async function loadUserPosts(){
-  const res = await fetch('/api/posts.php?offset=0&limit=999'); const posts = await res.json();
+  const res = await fetch('/api/posts_by_user.php?username='+encodeURIComponent(user)); const posts = await res.json();
   const list = document.getElementById('userPosts'); list.innerHTML='';
-  posts.filter(p=>String(p.author).toLowerCase()===user.toLowerCase()).forEach(p=>{
+  posts.forEach(p=>{
     const el = document.createElement('article'); el.className='card';
     el.innerHTML = `<h3 style="margin:0 0 4px"><a href="/post_view.php?id=${encodeURIComponent(p.id)}">${esc(p.title)}</a></h3>
       <div class="meta"><span class="tag">${new Date(p.created_at).toLocaleString()}</span></div>
