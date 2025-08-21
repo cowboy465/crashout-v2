@@ -39,7 +39,7 @@
 async function setupFeatured(){
   try{
     const res = await fetch('/api/get_users_online.php'); const data = await res.json();
-    const users = await (await fetch('/data/users.json',{cache:'no-store'})).json(); // if blocked, replace with API for this
+    const users = await (await fetch('/api/users_public.php',{cache:'no-store'})).json(); // fetch public user profiles
     let liveUser = (data.live||[])[0];
     if(liveUser && users[liveUser] && users[liveUser].twitch_channel){
       const ch = users[liveUser].twitch_channel;

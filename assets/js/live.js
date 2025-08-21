@@ -13,12 +13,12 @@ document.getElementById('chatForm').addEventListener('submit', async (e)=>{
 });
 setInterval(refreshChat, 3000); document.addEventListener('DOMContentLoaded', refreshChat);
 
-// Load player's Twitch channel from profile via /data/users.json (if blocked, replace with API)
+// Load player's Twitch channel from profile via public API
 (async ()=>{
   try{
     const meRes = await fetch('/api/get_users_online.php'); const pres = await meRes.json();
     const me = pres.currentUser;
-    const users = await (await fetch('/data/users.json',{cache:'no-store'})).json();
+    const users = await (await fetch('/api/users_public.php',{cache:'no-store'})).json();
     const rec = me && users[me] ? users[me] : null;
     if(rec && rec.twitch_channel){
       document.getElementById('livePlayer').innerHTML = `<iframe src="https://player.twitch.tv/?channel=${rec.twitch_channel}&parent=${location.hostname}" allowfullscreen style="width:100%;height:100%;border:0"></iframe>`;
