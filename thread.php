@@ -5,10 +5,11 @@
   <h2 style="margin-top:18px">Replies</h2>
   <div id="replies" class="grid"></div>
   <form class="form" id="replyForm" action="/api/forum_reply.php" method="post" style="margin-top:14px">
-    <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES); ?>">
-    <textarea class="textarea" name="message" placeholder="Reply..." required></textarea>
-    <button class="btn primary" type="submit"><i class="fa-solid fa-reply"></i> Reply</button>
-  </form>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES); ?>">
+      <textarea class="textarea" name="message" placeholder="Reply..." required></textarea>
+      <button class="btn primary" type="submit"><i class="fa-solid fa-reply"></i> Reply</button>
+    </form>
 </div></section>
 <?php include __DIR__.'/partials/footer.php'; ?>
 <script>

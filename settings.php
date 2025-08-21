@@ -2,7 +2,8 @@
 <section class="section"><div class="container">
   <h2>Settings</h2>
   <form id="profileForm" class="form" action="/api/update_profile.php" method="post" enctype="multipart/form-data">
-    <input class="input" type="text" name="displayname" placeholder="Display Name">
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input class="input" type="text" name="displayname" placeholder="Display Name">
     <textarea class="textarea" name="bio" placeholder="Bio (280 chars max)"></textarea>
     <select class="select" name="theme">
       <option value="dark">Dark</option>
@@ -17,8 +18,9 @@
 
   <h2 style="margin-top:20px">Change Password</h2>
   <form id="passForm" class="form" action="/api/change_password.php" method="post">
-    <input class="input" type="password" name="oldpass" placeholder="Old password" required>
-    <input class="input" type="password" name="newpass" placeholder="New password" required>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input class="input" type="password" name="oldpass" placeholder="Old password" required>
+      <input class="input" type="password" name="newpass" placeholder="New password" required>
     <button class="btn" type="submit">Change</button>
   </form>
 </div></section>

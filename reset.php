@@ -2,11 +2,12 @@
 <section class="section"><div class="container">
   <h2>Reset Password</h2>
   <form id="resetForm" class="form" action="/api/reset_password.php" method="post">
-    <input class="input" type="hidden" name="username" id="u">
-    <input class="input" type="hidden" name="token" id="t">
-    <input class="input" type="password" name="newpass" placeholder="New password" required>
-    <button class="btn primary" type="submit">Reset</button>
-  </form>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input class="input" type="hidden" name="username" id="u">
+      <input class="input" type="hidden" name="token" id="t">
+      <input class="input" type="password" name="newpass" placeholder="New password" required>
+      <button class="btn primary" type="submit">Reset</button>
+    </form>
 </div></section>
 <?php include __DIR__.'/partials/footer.php'; ?>
 <script>

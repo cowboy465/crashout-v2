@@ -2,20 +2,23 @@
 <section class="section"><div class="container">
   <h2>Login</h2>
   <form id="loginForm" class="form" action="/api/login.php" method="post">
-    <input class="input" type="text" name="username" placeholder="Username" required>
-    <input class="input" type="password" name="password" placeholder="Password" required>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input class="input" type="text" name="username" placeholder="Username" required>
+      <input class="input" type="password" name="password" placeholder="Password" required>
     <button class="btn primary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
   </form>
   <h2 style="margin-top:24px">Register</h2>
   <form id="registerForm" class="form" action="/api/register.php" method="post">
-    <input class="input" type="text" name="newuser" placeholder="New username" required>
-    <input class="input" type="password" name="newpass" placeholder="New password" required>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input class="input" type="text" name="newuser" placeholder="New username" required>
+      <input class="input" type="password" name="newpass" placeholder="New password" required>
     <button class="btn" type="submit"><i class="fa-solid fa-user-plus"></i> Create Account</button>
   </form>
   <h2 style="margin-top:24px">Forgot Password</h2>
   <form id="resetReq" class="form" action="/api/request_reset.php" method="post">
-    <input class="input" type="text" name="username" placeholder="Your username" required>
-    <button class="btn" type="submit">Get Reset Link</button>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input class="input" type="text" name="username" placeholder="Your username" required>
+      <button class="btn" type="submit">Get Reset Link</button>
   </form>
   <div class="tag" id="resetLink"></div>
 </div></section>

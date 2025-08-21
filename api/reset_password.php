@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/api_bootstrap.php';
+verify_csrf();
 $u = strtolower(param('username')); $token = param('token'); $new = param('newpass');
 $users = read_json('users.json');
 if(!isset($users[$u])||!isset($users[$u]['reset'])) respond(['status'=>'error','message'=>'Invalid token']);
