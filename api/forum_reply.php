@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/api_bootstrap.php';
+verify_csrf();
 $id = param('id'); $message = param('message'); $author = current_user() ?: (param('author')?:'anon');
 if($id===''||$message==='') respond(['status'=>'error','message'=>'id & message required']);
 $topics = read_json('topics.json');

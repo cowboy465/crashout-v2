@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/api_bootstrap.php';
+verify_csrf();
 $u = strtolower(param('username')); $p = param('password');
 $users = read_json('users.json');
 if(!isset($users[$u])) respond(['status'=>'error','message'=>'Invalid credentials']);

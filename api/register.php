@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/api_bootstrap.php';
+verify_csrf();
 $u = strtolower(param('newuser')); $p = param('newpass');
 if($u===''||$p===''){ respond(['status'=>'error','message'=>'Username & password required']); }
 if(!preg_match('/^[a-z0-9_\-]{3,20}$/',$u)){ respond(['status'=>'error','message'=>'Username must be 3-20 chars, a-z, 0-9, _, -']); }

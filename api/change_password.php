@@ -1,5 +1,7 @@
 <?php
-require __DIR__.'/api_bootstrap.php'; require_login();
+require __DIR__.'/api_bootstrap.php';
+require_login();
+verify_csrf();
 $u = current_user(); $old = param('oldpass'); $new = param('newpass');
 $users = read_json('users.json');
 if(!isset($users[$u])) respond(['status'=>'error','message'=>'User not found']);

@@ -5,11 +5,12 @@
   <h2 style="margin-top:18px">Comments</h2>
   <div id="comments" class="grid"></div>
   <form id="commentForm" class="form" action="/api/comments_add.php" method="post" style="margin-top:12px">
-    <input type="hidden" name="post_id" id="pid">
-    <input class="input" type="text" name="author" placeholder="Name (optional)">
-    <textarea class="textarea" name="message" placeholder="Write a comment…" required></textarea>
-    <button class="btn primary" type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button>
-  </form>
+      <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+      <input type="hidden" name="post_id" id="pid">
+      <input class="input" type="text" name="author" placeholder="Name (optional)">
+      <textarea class="textarea" name="message" placeholder="Write a comment…" required></textarea>
+      <button class="btn primary" type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button>
+    </form>
 </div></section>
 <?php include __DIR__.'/partials/footer.php'; ?>
 <script>

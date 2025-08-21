@@ -9,11 +9,12 @@
     <div class="card reveal">
       <h3 style="margin:0">Live Chat</h3>
       <ul id="chat" style="list-style:none;padding-left:0;max-height:380px;overflow:auto;margin:12px 0"></ul>
-      <form id="chatForm" class="form" action="/api/live_chat_post.php" method="post">
-        <input class="input" type="text" name="author" placeholder="Name (optional)">
-        <input class="input" type="text" name="message" placeholder="Type a message…" required>
-        <button class="btn primary" type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button>
-      </form>
+        <form id="chatForm" class="form" action="/api/live_chat_post.php" method="post">
+          <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+          <input class="input" type="text" name="author" placeholder="Name (optional)">
+          <input class="input" type="text" name="message" placeholder="Type a message…" required>
+          <button class="btn primary" type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button>
+        </form>
       <div class="actions"><button id="goLive" class="btn primary">Toggle Live</button></div>
     </div>
   </div>
