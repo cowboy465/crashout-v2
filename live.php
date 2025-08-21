@@ -18,5 +18,9 @@
     </div>
   </div>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script src="/assets/js/live.js"></script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>

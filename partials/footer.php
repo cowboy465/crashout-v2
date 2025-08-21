@@ -7,4 +7,5 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/whatwg-fetch/3.6.20/fetch.umd.min.js"></script>
 <script src="/assets/js/main.js"></script>
+<?php if (!empty($pageScripts)) echo $pageScripts; ?>
 </body></html>

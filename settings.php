@@ -19,13 +19,17 @@
   <form id="passForm" class="form" action="/api/change_password.php" method="post">
     <input class="input" type="password" name="oldpass" placeholder="Old password" required>
     <input class="input" type="password" name="newpass" placeholder="New password" required>
-    <button class="btn" type="submit">Change</button>
+  <button class="btn" type="submit">Change</button>
   </form>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script>
 function bind(id){ const f=document.getElementById(id); f.addEventListener('submit', async (e)=>{
   e.preventDefault(); const res = await fetch(f.action,{method:'POST', body:new FormData(f)}); const data = await res.json(); alert(data.message||'Done');
 }); }
 bind('profileForm'); bind('passForm');
 </script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>

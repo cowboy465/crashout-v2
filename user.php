@@ -26,7 +26,8 @@ else if(!empty($rec['last_seen']) && time()-strtotime($rec['last_seen'])<=90) $b
   <h2 style="margin-top:18px">Posts by <?php echo htmlspecialchars($rec['display_name']?:$u); ?></h2>
   <div id="userPosts" class="grid cards"></div>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script>
 const user = <?php echo json_encode($u); ?>;
 function esc(s){return s? s.replace(/</g,'&lt;') : ''}
@@ -35,11 +36,15 @@ async function loadUserPosts(){
   const list = document.getElementById('userPosts'); list.innerHTML='';
   posts.filter(p=>String(p.author).toLowerCase()===user.toLowerCase()).forEach(p=>{
     const el = document.createElement('article'); el.className='card';
-    el.innerHTML = `<h3 style="margin:0 0 4px"><a href="/post_view.php?id=${encodeURIComponent(p.id)}">${esc(p.title)}</a></h3>
-      <div class="meta"><span class="tag">${new Date(p.created_at).toLocaleString()}</span></div>
-      <p style="margin:10px 0">${esc(p.content)}</p>`;
+    el.innerHTML = `<h3 style="margin:0 0 4px"><a href="/post_view.php?id=${encodeURIComponent(p.id)}">${esc(p.title)}</a></h3>`+
+      `<div class=\"meta\"><span class=\"tag\">${new Date(p.created_at).toLocaleString()}</span></div>`+
+      `<p style=\"margin:10px 0\">${esc(p.content)}</p>`;
     list.appendChild(el);
   });
 }
 document.addEventListener('DOMContentLoaded', loadUserPosts);
 </script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>
+

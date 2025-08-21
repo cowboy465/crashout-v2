@@ -8,7 +8,8 @@
     <div class="tag">Tip: Posts appear instantly on the Home feed.</div>
   </form>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script>
 document.getElementById('postForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
@@ -18,3 +19,6 @@ document.getElementById('postForm').addEventListener('submit', async (e)=>{
   if(data.status==='ok'){ alert('Posted!'); location.href='/'; } else alert(data.message||'Error');
 });
 </script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>
