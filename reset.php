@@ -5,10 +5,11 @@
     <input class="input" type="hidden" name="username" id="u">
     <input class="input" type="hidden" name="token" id="t">
     <input class="input" type="password" name="newpass" placeholder="New password" required>
-    <button class="btn primary" type="submit">Reset</button>
+  <button class="btn primary" type="submit">Reset</button>
   </form>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script>
 const qs = new URLSearchParams(location.search);
 document.getElementById('u').value = qs.get('u')||'';
@@ -19,3 +20,6 @@ document.getElementById('resetForm').addEventListener('submit', async (e)=>{
   const data = await res.json(); alert(data.message||'Done'); if(data.status==='ok') location.href='/login.php';
 });
 </script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>

@@ -10,7 +10,8 @@
     <button class="btn primary" type="submit"><i class="fa-solid fa-reply"></i> Reply</button>
   </form>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script>
 const id = new URLSearchParams(location.search).get('id');
 function esc(s){return s? s.replace(/</g,'&lt;') : ''}
@@ -31,3 +32,6 @@ document.getElementById('replyForm').addEventListener('submit', async (e)=>{
 });
 document.addEventListener('DOMContentLoaded', loadThread);
 </script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>

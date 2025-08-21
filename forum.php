@@ -8,5 +8,9 @@
   </form>
   <table class="table"><thead><tr><th>Topic</th><th>Started by</th><th>Replies</th><th>When</th></tr></thead><tbody id="topicsBody"></tbody></table>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script src="/assets/js/forum.js"></script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>

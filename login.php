@@ -19,7 +19,8 @@
   </form>
   <div class="tag" id="resetLink"></div>
 </div></section>
-<?php include __DIR__.'/partials/footer.php'; ?>
+<?php
+$pageScripts = <<<'HTML'
 <script>
 function bind(formId){
   const f=document.getElementById(formId);
@@ -34,3 +35,6 @@ function bind(formId){
 }
 ['loginForm','registerForm','resetReq'].forEach(bind);
 </script>
+HTML;
+include __DIR__.'/partials/footer.php';
+?>
