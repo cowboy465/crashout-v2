@@ -17,15 +17,22 @@ $users[$u]['twitch_channel'] = $twitch;
 // Avatar upload
 if(isset($_FILES['avatar']) && is_uploaded_file($_FILES['avatar']['tmp_name'])){
   $f = $_FILES['avatar'];
-  $okTypes = ['image/jpeg'=>'.jpg','image/png'=>'.png','image/webp'=>'.webp'];
-  if(isset($okTypes[$f['type']]) && $f['size'] <= 2*1024*1024){
-    $ext = $okTypes[$f['type']];
-    $name = $u.'-'.bin2hex(random_bytes(4)).$ext;
-    $destDir = dirname(__DIR__).'/uploads/avatars';
-    if(!file_exists($destDir)) @mkdir($destDir,0755,true);
+  $okTypes = [
+    'image/jpeg'=>['jpg','jpeg'],
+    'image/png'=>['png'],
+    'image/webp'=>['webp']
+  ];
+  $fileInfo = @getimagesize($f['tmp_name']);
+  $mime = $fileInfo['mime'] ?? '';
+  $ext = strtolower(pathinfo($f['name'], PATHINFO_EXTENSION));
+  if($fileInfo && isset($okTypes[$mime]) && in_array($ext,$okTypes[$mime],true) && $f['size'] <= 2*1024*1024){
+    $safeUser = preg_replace('/[^a-zA-Z0-9_-]/','',$u);
+    $name = $safeUser.'-'.bin2hex(random_bytes(8)).'.'.$ext;
+    $destDir = dirname(__DIR__,2).'/uploads/avatars';
+    if(!is_dir($destDir)) @mkdir($destDir,0755,true);
     $dest = $destDir.'/'.$name;
     if(move_uploaded_file($f['tmp_name'],$dest)){
-      $users[$u]['avatar'] = '/uploads/avatars/'.$name;
+      $users[$u]['avatar'] = $name;
     }
   }
 }
