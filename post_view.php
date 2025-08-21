@@ -16,10 +16,9 @@
 const id = new URLSearchParams(location.search).get('id'); document.getElementById('pid').value = id;
 function esc(s){return s? s.replace(/</g,'&lt;') : ''}
 async function loadPost(){
-  const res = await fetch('/api/posts.php?offset=0&limit=999'); const posts = await res.json();
-  const p = posts.find(x=>x.id===id);
+  const res = await fetch('/api/post_get.php?id='+encodeURIComponent(id)); const p = await res.json();
   const el = document.getElementById('postCard');
-  if(!p){ el.innerHTML='<div class="tag">Not found</div>'; return; }
+  if(!p || p.status==='error'){ el.innerHTML='<div class="tag">Not found</div>'; return; }
   el.innerHTML = `<h3 style="margin:0 0 4px">${esc(p.title)}</h3>
     <div class="meta"><span class="tag"><a href="/user/${esc(p.author||'anon')}">${esc(p.author||'anon')}</a></span><span>·</span><span>${new Date(p.created_at).toLocaleString()}</span></div>
     <p style="margin:10px 0">${esc(p.content)}</p>
